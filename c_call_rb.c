@@ -72,10 +72,10 @@ int main(int argc, char **argv) {
 		"  -d  --debug                 set $DEBUG to true\n"
 		"  --  [arg1 [arg2 [...]]]     all arguments pass to ruby program after '--'\n"
 		"\n"
-		"---- this program will run ----\n"
-		"%s\n"
-		"--------\n"
-		, argv[0], evalStr);
+		//"---- this program will run ----\n"
+		//"%s\n"
+		//"--------\n"
+		, argv[0] /*, evalStr */);
 		exit(0);
 	}
 
