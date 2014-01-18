@@ -58,10 +58,13 @@ int main(int argc, char **argv) {
 		"puts %%Q{LOAD_PATH: #{$:}} if $DEBUG\n"
 		"argv0 = %%q*%s*\n"
 		"puts %%Q{ARGV0: #{argv0}} if $DEBUG\n"
-		"rbfn = File.basename(argv0).chomp(RbConfig::CONFIG['EXEEXT'])\n"
-		"puts %%Q{RBFN: #{rbfn}} if $DEBUG\n"
+		"dir, rbfn = File.split(argv0)\n"
+		"rbfn = rbfn.chomp(RbConfig::CONFIG['EXEEXT'])\n"
+		"puts %%Q{Chdir: #{dir}   RubyFile: #{rbfn}} if $DEBUG\n"
 		"\n"
-		"require rbfn\n"
+		"Dir.chdir(dir) do\n"
+		"  require rbfn\n"
+		"end\n"
 		,debug_flag, argv[0]);
 
 	if (help_flag) {
